@@ -9,8 +9,9 @@ This is a node API using the Express framework to get posts from [wpengine](http
 
 ## Branches
 
-Main/Master - Doesn't use a database for user login
-MongoDB - Uses MongoDB with Mongoose for user login/signup
+**Main** - Doesn't use a database for user login
+
+**MongoDB** - Uses MongoDB with Mongoose for user login/signup
 
 ## Authentication
 Send a ``POST`` request to ``/users/login`` with the following JSON. A JSON web token will be sent in the response.
@@ -22,7 +23,7 @@ Send a ``POST`` request to ``/users/login`` with the following JSON. A JSON web 
 ```
 
 ## Docs
-API documentation for ``main`` repo uses Swagger and is available at: 
+API documentation for ``main`` branch is available at: 
 
 [api-docs](https://digital-api.herokuapp.com/api-docs/)
 
