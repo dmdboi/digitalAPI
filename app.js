@@ -4,8 +4,6 @@ const logger = require("morgan");
 const cors = require("cors");
 const config = require("./config/config")
 
-require("./services/database")
-
 const app = express();
 
 // If accessing through a client that isn't on the same Origin, add cors.
