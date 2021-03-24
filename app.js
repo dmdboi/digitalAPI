@@ -8,11 +8,12 @@ require("./services/database")
 
 const app = express();
 
-app.use(
-  cors({
-    origin: "http://localhost:8080",
-  })
-);
+// If accessing through a client that isn't on the same Origin, add cors.
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//   })
+// );
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -21,7 +22,10 @@ app.use(cookieParser());
 
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
+app.use("/api", require("./routes/api"));
 
+
+// Default Error Handler. 
 app.use(function (err, req, res, next) {
   console.log(err);
   res.status(500).send({ message: "Something went wrong with this request" });

@@ -9,10 +9,10 @@ const config = require("../config/config");
  * @return {String} A JSON Web Token
  */
 exports.login = async (body) => {
-  let email = body.email.toLowerCase();
-  let password = body.password;
+  let { username, password } = body
 
-  const user = await userService.find({ email: email });
+  const user = await userService.find({ username: username });
+
   let correctPassword = await user.validPassword(password);
 
   if (user && correctPassword) {

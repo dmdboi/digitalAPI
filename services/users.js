@@ -9,11 +9,10 @@ const userService = {
    */
   create: async function (body) {
     let document = new User();
-    let { username, email, password } = body;
+    let { username, password } = body;
 
     document.uuid = uniqid("u");
     document.username = username;
-    document.email = email;
     document.password = document.encryptPassword(password);
 
     await document.save();
