@@ -4,30 +4,19 @@ const userService = require("./users");
 const config = require("../config/config");
 
 /**
- * @description Authentication via Email & Password
+ * @description Authentication via Username & Password
  * @param {Object} User An object with a User's credentials.
  * @return {String} A JSON Web Token
  */
-exports.login = async (body) => {
-  let { username, password } = body
-
-  const user = await userService.find({ username: username });
-
-  let correctPassword = await user.validPassword(password);
-
-  if (user && correctPassword) {
-    const token = jwt.sign(
-      { uuid: user.uuid, role: user.role },
-      config.JWT_SECRET,
-      {
+exports.login = async (username) => {
+  const token = jwt.sign(
+    { username: username},
+    config.JWT_SECRET,
+    {
         expiresIn: "3h",
-      }
-    );
+    });
     return token;
-  } else {
-    throw new Error("Incorrect Password");
-  }
-};
+}
 
 /**
  * @description Verifies if a JWT is valid
@@ -35,20 +24,9 @@ exports.login = async (body) => {
  * @return {Object} The user's document from the database minus password
  */
 exports.verify = async (user) => {
-  const userDocument = await userService.find({ uuid: user.uuid });
+  const userDocument = await userService.find({ username: user.username });
 
   userDocument["password"] = null;
 
   return userDocument;
-};
-
-/**
- * @description Creates a user in the database  via userService
- * @param {Object} User An object with an email, username and password
- * @return {Object} The user's document from the database minus password
- */
-exports.register = async (body) => {
-  //Do validation on Req body
-  let user = await userService.create(body);
-  return user;
 };
