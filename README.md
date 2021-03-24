@@ -29,4 +29,4 @@ API documentation for ``main`` repo uses Swagger and is available at:
 ## Live Version
 Auto deployed with GitHub Actions
 
-[Heroku](https://digital-api.herokuapp.com/)
+[Main Branch](https://digital-api.herokuapp.com/)
