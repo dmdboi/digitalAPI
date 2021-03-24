@@ -6,6 +6,11 @@ const config = require("./config/config")
 
 const app = express();
 
+// Swagger API documentation
+const swaggerJSdoc = require("swagger-jsdoc");
+const swaggerUI = require("swagger-ui-express");
+const specs = swaggerJSdoc(require("./config/swagger"));
+
 // If accessing through a client that isn't on the same Origin, add cors.
 // app.use(
 //   cors({
@@ -22,6 +27,13 @@ app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
 app.use("/api", require("./routes/api"));
 
+app.use(
+  "/api-docs",
+  swaggerUI.serve,
+  swaggerUI.setup(specs, {
+    explorer: true
+  })
+);
 
 // Default Error Handler. 
 app.use(function (err, req, res, next) {

@@ -10,3 +10,17 @@ const wrapper = (fn) => (req, res, next) =>
 router.get('/', wrapper(indexController.home));
 
 module.exports = router;
+
+/**
+ * @swagger
+ *
+ * /:
+ *   get:
+ *     description: Home Route
+ *     security: []
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: Returns a Hello World message
+ */
