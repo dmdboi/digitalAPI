@@ -30,5 +30,3 @@ API documentation for ``main`` repo uses Swagger and is available at:
 Auto deployed with GitHub Actions
 
 [Heroku](https://digital-api.herokuapp.com/)
-
-Built on top of [Diamond express](https://github.com/dmdboi/diamond-express)
